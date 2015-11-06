@@ -17,6 +17,8 @@ echo -n "Install Steam? [y/n] " && read STEAM
 echo -n "Install Dropbox? [y/n] " && read DROPBOX
 echo -n "Install Virtualbox? [y/n] " && read VIRTUALBOX
 echo -n "Install pip for Python? [y/n] " && read PIP
+echo -n "Install irssi IRC client? [y/n] " && read IRSSI
+
 if [ "$PIP" == y ] ; then echo -n "Install numpy for Python? [y/n] " && read NUMPY ; fi
 if [ "$PIP" == y ] ; then echo -n "Install scipy for Python? [y/n] " && read SCIPY ; fi
 
@@ -72,7 +74,8 @@ if [ "$GIMP" == y ] ; then echo "Installing gimp..." && apt-get install -qqy gim
 if [ "$STEAM" == y ] ; then echo "Installing Steam..." && apt-get install -qqy steam ; fi
 if [ "$VIRTUALBOX" == y ] ; then echo "Installing Virtualbox..." && apt-get install -qqy virtualbox-qt ; fi
 if [ "$PIP" == y ] ; then echo "Installing pip..." && apt-get install -qqy python-pip python3-pip python-setuptools; fi
-if [ "$NUMPY" == y ] then echo "Installing numpy..." && pip install numpy && pip3 install numpy ; fi
-if [ "$SCIPY" == y ] then echo "Installing scipy..." && pip install scipy && pip3 install scipy ; fi
+if [ "$NUMPY" == y ] ; then echo "Installing numpy..." && pip install numpy && pip3 install numpy ; fi
+if [ "$SCIPY" == y ] ; then echo "Installing scipy..." && pip install scipy && pip3 install scipy ; fi
+if [ "$IRSSI" == y ] ; then echo "Installing irssi..." && apt-get install -qq irssi ; fi
 
 echo "...done!"
