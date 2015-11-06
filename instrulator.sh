@@ -1,3 +1,5 @@
+ARCH="$(uname -m)"
+
 # Check if user is running as root (sudo)
 if [ "$(id -u)" != "0" ] ; then
   echo "Sorry, you need to run this script as root, else it will not do much good."
@@ -14,6 +16,9 @@ echo -n "Install gimp? [y/n] " && read GIMP
 echo -n "Install Steam? [y/n] " && read STEAM
 echo -n "Install Dropbox? [y/n] " && read DROPBOX
 echo -n "Install Virtualbox? [y/n] " && read VIRTUALBOX
+echo -n "Install pip for Python? [y/n] " && read PIP
+if [ "$PIP" == y ] ; then echo -n "Install numpy for Python? [y/n] " && read NUMPY ; fi
+if [ "$PIP" == y ] ; then echo -n "Install scipy for Python? [y/n] " && read SCIPY ; fi
 
 echo "Adding repositories and keys"
 if [ "$SPOTIFY" == y ] ; then
@@ -61,10 +66,13 @@ Comment=Start Dropbox
 EOF
 fi
 
-if [ "$CHROME" == y ] ; then echo "Installing Chrome..." && apt-get install -qq google-chrome-stable ; fi
-if [ "$SPOTIFY" == y ] ; then echo "Installing Spotify..." && apt-get install -qq spotify-client ; fi
-if [ "$GIMP" == y ] ; then echo "Installing gimp..." && apt-get install -qq gimp ; fi
-if [ "$STEAM" == y ] ; then echo "Installing Steam..." && apt-get install -qq steam ; fi
-if [ "$VIRTUALBOX" == y ] ; then echo "Installing Virtualbox..." && apt-get install -qq virtualbox-qt ; fi
+if [ "$CHROME" == y ] ; then echo "Installing Chrome..." && apt-get install -qqy google-chrome-stable ; fi
+if [ "$SPOTIFY" == y ] ; then echo "Installing Spotify..." && apt-get install -qqy spotify-client ; fi
+if [ "$GIMP" == y ] ; then echo "Installing gimp..." && apt-get install -qqy gimp ; fi
+if [ "$STEAM" == y ] ; then echo "Installing Steam..." && apt-get install -qqy steam ; fi
+if [ "$VIRTUALBOX" == y ] ; then echo "Installing Virtualbox..." && apt-get install -qqy virtualbox-qt ; fi
+if [ "$PIP" == y ] ; then echo "Installing pip..." && apt-get install -qqy python-pip python3-pip python-setuptools; fi
+if [ "$NUMPY" == y ] then echo "Installing numpy..." && pip install numpy && pip3 install numpy ; fi
+if [ "$SCIPY" == y ] then echo "Installing scipy..." && pip install scipy && pip3 install scipy ; fi
 
 echo "...done!"
