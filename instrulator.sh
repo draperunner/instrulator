@@ -1,3 +1,11 @@
+# Check if user is running as root (sudo)
+if [ "$(id -u)" != "0" ] ; then
+  echo "Sorry, you need to run this script as root, else it will not do much good."
+  echo -e "Try the following command:\n"
+  echo -e "sudo ./instrulator.sh\n"
+  exit 1
+fi
+
 # Ask users for what to install
 echo -n "Install Google Chrome? [y/n] " && read CHROME
 echo -n "Install Spotify? [y/n] " && read SPOTIFY
@@ -33,17 +41,30 @@ if [ "$NODE" == y ] ; then
 fi
 
 # Install Dropbox
-if [ "$DROPBOX" == y] ; then
+if [ "$DROPBOX" == y ] ; then
   echo "Installing Dropbox..."
   wget "https://www.dropbox.com/download?plat=lnx.x86_64"
   mv dropbox-lnx.x86_64* ~
   tar xzf /home/$USER/dropbox-lnx.x86_64*
   /home/$USER/.dropbox-dist/dropboxd
-  echo -e "[Desktop Entry]\nType=Application\nExec=/home/$USER/.dropbox-dist/dropboxd\nHidden=false\nNoDisplay=false\nX-GNOME-Autostart-enabled=true\nName[en_US]=Dropbox\nName=Dropbox\nComment[en_US]=Start Dropbox\nComment=Start Dropbox\n" >> /home/$USER/.config/autostart/dropboxd.desktop
+  cat > /home/$USER/.config/autostart/dropboxd.desktop << EOM
+[Desktop Entry]
+Type=Application
+Exec=/home/$USER/.dropbox-dist/dropboxd
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Dropbox
+Name=Dropbox
+Comment[en_US]=Start Dropbox
+Comment=Start Dropbox
+EOF
 fi
 
 if [ "$CHROME" == y ] ; then echo "Installing Chrome..." && apt-get install -qq google-chrome-stable ; fi
 if [ "$SPOTIFY" == y ] ; then echo "Installing Spotify..." && apt-get install -qq spotify-client ; fi
 if [ "$GIMP" == y ] ; then echo "Installing gimp..." && apt-get install -qq gimp ; fi
 if [ "$STEAM" == y ] ; then echo "Installing Steam..." && apt-get install -qq steam ; fi
-if [ "$VIRTUALBOX" == y ] ; then echo "Installing Virtualbox..." && apt-get install -qq virtualbox-qt
+if [ "$VIRTUALBOX" == y ] ; then echo "Installing Virtualbox..." && apt-get install -qq virtualbox-qt ; fi
+
+echo "...done!"
