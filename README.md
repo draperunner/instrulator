@@ -7,7 +7,7 @@ back in your comfortable chair, with an ice cold beer in your hand.
 ## How-to
 
 Download the script:  
-`wget https://github.com/draperunner/intrulator/instrulator.sh`  
+`wget https://raw.githubusercontent.com/draperunner/instrulator/master/instrulator.sh`  
 Make it executable:  
 `chmod +x instrulator.sh`  
 Run it with sudo  
