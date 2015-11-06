@@ -6,11 +6,11 @@ back in your comfortable chair, with an ice cold beer in your hand.
 
 ## How-to
 
-Download the script:
-`wget https://github.com/draperunner/intrulator/instrulator.sh`
+Download the script:  
+`wget https://github.com/draperunner/intrulator/instrulator.sh`  
 Make it executable:  
-`chmod +x instrulator.sh`
+`chmod +x instrulator.sh`  
 Run it with sudo  
-`sudo ./instrulator.sh`
+`sudo ./instrulator.sh`  
 (Optional) Delete it after you're done  
 `rm instrulator.sh`
