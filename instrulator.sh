@@ -4,24 +4,36 @@ ARCH="$(uname -m)"
 if [ "$(id -u)" != "0" ] ; then
   echo "Sorry, you need to run this script as root, else it will not do much good."
   echo -e "Try the following command:\n"
-  echo -e "sudo ./instrulator.sh\n"
+  echo -e "sudo bash instrulator.sh\n"
   exit 1
 fi
 
-# Ask users for what to install
-echo -n "Install Google Chrome? [y/n] " && read CHROME
-echo -n "Install Spotify? [y/n] " && read SPOTIFY
-echo -n "Install Node.js? [y/n] " && read NODE
-echo -n "Install gimp? [y/n] " && read GIMP
-echo -n "Install Steam? [y/n] " && read STEAM
-echo -n "Install Dropbox? [y/n] " && read DROPBOX
-echo -n "Install Virtualbox? [y/n] " && read VIRTUALBOX
-echo -n "Install pip for Python? [y/n] " && read PIP
-echo -n "Install irssi IRC client? [y/n] " && read IRSSI
+NUM_INSTALLS=0
 
-if [ "$PIP" == y ] ; then echo -n "Install numpy for Python? [y/n] " && read NUMPY ; fi
-if [ "$PIP" == y ] ; then echo -n "Install scipy for Python? [y/n] " && read SCIPY ; fi
+echo -n "Install Google Chrome? [y/n] " && read CHROME && [ "$CHROME" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Spotify? [y/n] " && read SPOTIFY && [ "$SPOTIFY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Node.js? [y/n] " && read NODE && [ "$NODE" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install gimp? [y/n] " && read GIMP && [ "$GIMP" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Steam? [y/n] " && read STEAM && [ "$STEAM" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Dropbox? [y/n] " && read DROPBOX && [ "$DROPBOX" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Virtualbox? [y/n] " && read VIRTUALBOX && [ "$VIRTUALBOX" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install pip for Python? [y/n] " && read PIP && [ "$PIP" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install irssi IRC client? [y/n] " && read IRSSI && [ "$IRSSI" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+if [ "$PIP" == y ] ; then echo -n "Install numpy for Python? [y/n] " && read NUMPY && [ "$NUMPY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL)) ; fi
+if [ "$PIP" == y ] ; then echo -n "Install scipy for Python? [y/n] " && read SCIPY && [ "$SCIPY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL)) ; fi
 
+if [ "$NUM_INSTALLS" -eq 0 ] ; then
+  echo -e "\nNone of the programs will be installed. Why are you running this script?\n"
+  exit 1
+fi
+
+echo
+echo "####################################"
+echo "Starting! This might take a while."
+echo "Go get a cup of coffee or something."
+echo "Installing $NUM_INSTALLS program(s)."
+echo "####################################"
+echo
 echo "Adding repositories and keys"
 if [ "$SPOTIFY" == y ] ; then
   apt-add-repository -y "deb http://repository.spotify.com stable non-free"
@@ -65,7 +77,7 @@ Name[en_US]=Dropbox
 Name=Dropbox
 Comment[en_US]=Start Dropbox
 Comment=Start Dropbox
-EOF
+EOM
 fi
 
 if [ "$CHROME" == y ] ; then echo "Installing Chrome..." && apt-get install -qqy google-chrome-stable ; fi

@@ -11,6 +11,6 @@ Download the script:
 Make it executable:  
 `chmod +x instrulator.sh`  
 Run it with sudo  
-`sudo ./instrulator.sh`  
+`sudo bash instrulator.sh`  
 (Optional) Delete it after you're done  
 `rm instrulator.sh`
