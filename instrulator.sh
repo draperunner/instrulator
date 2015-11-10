@@ -18,9 +18,11 @@ echo -n "Install Steam? [y/n] " && read STEAM && [ "$STEAM" != "y" ] ; BOOL=$? &
 echo -n "Install Dropbox? [y/n] " && read DROPBOX && [ "$DROPBOX" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install Virtualbox? [y/n] " && read VIRTUALBOX && [ "$VIRTUALBOX" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install pip for Python? [y/n] " && read PIP && [ "$PIP" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install irssi IRC client? [y/n] " && read IRSSI && [ "$IRSSI" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 if [ "$PIP" == y ] ; then echo -n "Install numpy for Python? [y/n] " && read NUMPY && [ "$NUMPY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL)) ; fi
 if [ "$PIP" == y ] ; then echo -n "Install scipy for Python? [y/n] " && read SCIPY && [ "$SCIPY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL)) ; fi
+echo -n "Install irssi IRC client? [y/n] " && read IRSSI && [ "$IRSSI" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install IntelliJ 15 Ultimate Edition [y/n] ?" && read INTELLIJ && [ "$INTELLIJ" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install compiz config manager? [y/n] ?" && read COMPIZ && [ "$COMPIZ" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 
 if [ "$NUM_INSTALLS" -eq 0 ] ; then
   echo -e "\nNone of the programs will be installed. Why are you running this script?\n"
@@ -34,6 +36,7 @@ echo "Go get a cup of coffee or something."
 echo "Installing $NUM_INSTALLS program(s)."
 echo "####################################"
 echo
+
 echo "Adding repositories and keys"
 if [ "$SPOTIFY" == y ] ; then
   apt-add-repository -y "deb http://repository.spotify.com stable non-free"
@@ -65,7 +68,6 @@ if [ "$DROPBOX" == y ] ; then
   wget "https://www.dropbox.com/download?plat=lnx.x86_64"
   mv dropbox-lnx.x86_64* ~
   tar xzf /home/$USER/dropbox-lnx.x86_64*
-  /home/$USER/.dropbox-dist/dropboxd
   cat > /home/$USER/.config/autostart/dropboxd.desktop << EOM
 [Desktop Entry]
 Type=Application
@@ -90,4 +92,16 @@ if [ "$NUMPY" == y ] ; then echo "Installing numpy..." && pip install numpy && p
 if [ "$SCIPY" == y ] ; then echo "Installing scipy..." && pip install scipy && pip3 install scipy ; fi
 if [ "$IRSSI" == y ] ; then echo "Installing irssi..." && apt-get install -qq irssi ; fi
 
-echo "...done!"
+if [ "$INTELLIJ"] ; then
+  echo "Installing IntelliJ 15..."
+  wget https://d1opms6zj7jotq.cloudfront.net/idea/ideaIU-15.0.tar.gz
+  tar -zxf ideaIU-15.0.tar.gz
+  rm ideaIU-150.tar.gz
+  mv idea-IU-143.381.42 /opt/
+fi
+
+if [ "$COMPIZ" == y ] ; then echo "Installing compiz..." && apt-get install -qq compiz-config-manager ; fi
+
+echo -e "...done!\n"
+if [ "$DROPBOX" == y] ; then echo "PS! Use the command '~/.dropbox-dist/dropboxd' to run Dropbox for the first time. It will automatically start on boot" ; fi
+if [ "$INTELLIJ" == y] ; then echo "PS! Use the command '/opt/ideaIU*/bin/idea.sh' to run IntelliJ for the first time." ; fi
