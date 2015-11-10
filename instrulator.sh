@@ -68,18 +68,7 @@ if [ "$DROPBOX" == y ] ; then
   wget "https://www.dropbox.com/download?plat=lnx.x86_64"
   mv dropbox-lnx.x86_64* ~
   tar xzf /home/$USER/dropbox-lnx.x86_64*
-  cat > /home/$USER/.config/autostart/dropboxd.desktop << EOM
-[Desktop Entry]
-Type=Application
-Exec=/home/$USER/.dropbox-dist/dropboxd
-Hidden=false
-NoDisplay=false
-X-GNOME-Autostart-enabled=true
-Name[en_US]=Dropbox
-Name=Dropbox
-Comment[en_US]=Start Dropbox
-Comment=Start Dropbox
-EOM
+  wget https://raw.githubusercontent.com/draperunner/instrulator/master/dropboxd.desktop -P /home/$USER/.config/autostart/
 fi
 
 if [ "$CHROME" == y ] ; then echo "Installing Chrome..." && apt-get install -qqy google-chrome-stable ; fi

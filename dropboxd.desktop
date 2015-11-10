@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Exec=/home/$USER/.dropbox-dist/dropboxd
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
+Name[en_US]=Dropbox
+Name=Dropbox
+Comment[en_US]=Start Dropbox
+Comment=Start Dropbox
