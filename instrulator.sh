@@ -66,9 +66,12 @@ fi
 if [ "$DROPBOX" == y ] ; then
   echo "Installing Dropbox..."
   wget "https://www.dropbox.com/download?plat=lnx.x86_64"
-  mv dropbox-lnx.x86_64* ~
+  mv dropbox-lnx.x86_64* /home/$USER
   tar xzf /home/$USER/dropbox-lnx.x86_64*
-  wget https://raw.githubusercontent.com/draperunner/instrulator/master/dropboxd.desktop -P /home/$USER/.config/autostart/
+  wget https://raw.githubusercontent.com/draperunner/instrulator/master/dropboxd.desktop
+  touch /home/$USER/.config/autostart/dropboxd.desktop
+  envsubst < dropboxd.desktop > /home/$USER/.config/autostart/dropboxd.desktop
+  rm dropboxd.desktop
 fi
 
 if [ "$CHROME" == y ] ; then echo "Installing Chrome..." && apt-get install -qqy google-chrome-stable ; fi
