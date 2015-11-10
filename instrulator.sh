@@ -23,6 +23,7 @@ if [ "$PIP" == y ] ; then echo -n "Install scipy for Python? [y/n] " && read SCI
 echo -n "Install irssi IRC client? [y/n] " && read IRSSI && [ "$IRSSI" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install IntelliJ 15 Ultimate Edition [y/n] ?" && read INTELLIJ && [ "$INTELLIJ" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install compiz config manager? [y/n] ?" && read COMPIZ && [ "$COMPIZ" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install QEMU machine emulator? [y/n] ?" && read QEMU && [ "$QEMU" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 
 if [ "$NUM_INSTALLS" -eq 0 ] ; then
   echo -e "\nNone of the programs will be installed. Why are you running this script?\n"
@@ -82,7 +83,7 @@ if [ "$VIRTUALBOX" == y ] ; then echo "Installing Virtualbox..." && apt-get inst
 if [ "$PIP" == y ] ; then echo "Installing pip..." && apt-get install -qqy python-pip python3-pip python-setuptools; fi
 if [ "$NUMPY" == y ] ; then echo "Installing numpy..." && pip install numpy && pip3 install numpy ; fi
 if [ "$SCIPY" == y ] ; then echo "Installing scipy..." && pip install scipy && pip3 install scipy ; fi
-if [ "$IRSSI" == y ] ; then echo "Installing irssi..." && apt-get install -qq irssi ; fi
+if [ "$IRSSI" == y ] ; then echo "Installing irssi..." && apt-get install -qqy irssi ; fi
 
 if [ "$INTELLIJ"] ; then
   echo "Installing IntelliJ 15..."
@@ -92,7 +93,8 @@ if [ "$INTELLIJ"] ; then
   mv idea-IU-143.381.42 /opt/
 fi
 
-if [ "$COMPIZ" == y ] ; then echo "Installing compiz..." && apt-get install -qq compiz-config-manager ; fi
+if [ "$COMPIZ" == y ] ; then echo "Installing compiz..." && apt-get install -qqy compiz-config-manager ; fi
+if [ "$QEMU" == y ] ; then echo "Installing QEMU..." && apt-get install -qqy qemu-kvm qemu virt-manager virt-viewer libvirt-bin ; fi
 
 echo -e "...done!\n"
 if [ "$DROPBOX" == y] ; then echo "PS! Use the command '~/.dropbox-dist/dropboxd' to run Dropbox for the first time. It will automatically start on boot" ; fi
