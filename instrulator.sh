@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 ARCH="$(uname -m)"
 
 # Check if user is running as root (sudo)

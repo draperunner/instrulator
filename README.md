@@ -14,3 +14,9 @@ Run it with sudo
 `sudo bash instrulator.sh`  
 (Optional) Delete it after you're done  
 `rm instrulator.sh`
+
+
+## Testing
+
+1. Install [Vagrant](https://www.vagrantup.com/).
+2. Run `vagrant up` from project folder.
