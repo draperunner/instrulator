@@ -89,7 +89,7 @@ if [ "$SCIPY" == y ] ; then echo "Installing scipy..." && pip install scipy && p
 if [ "$IRSSI" == y ] ; then echo "Installing irssi..." && apt-get install -qqy irssi ; fi
 if [ "$METEOR" == y ] ; then echo "Installing Meteor.js..." && curl https://install.meteor.com/ | sh ; fi
 
-if [ "$INTELLIJ"] ; then
+if [ "$INTELLIJ" == y ] ; then
   echo "Installing IntelliJ 15..."
   wget https://d1opms6zj7jotq.cloudfront.net/idea/ideaIU-15.0.tar.gz
   tar -zxf ideaIU-15.0.tar.gz
@@ -101,5 +101,5 @@ if [ "$COMPIZ" == y ] ; then echo "Installing compiz..." && apt-get install -qqy
 if [ "$QEMU" == y ] ; then echo "Installing QEMU..." && apt-get install -qqy qemu-kvm qemu virt-manager virt-viewer libvirt-bin ; fi
 
 echo -e "...done!\n"
-if [ "$DROPBOX" == y] ; then echo "PS! Use the command '~/.dropbox-dist/dropboxd' to run Dropbox for the first time. It will automatically start on boot" ; fi
-if [ "$INTELLIJ" == y] ; then echo "PS! Use the command '/opt/ideaIU*/bin/idea.sh' to run IntelliJ for the first time." ; fi
+if [ "$DROPBOX" == y ] ; then echo "PS! Use the command '~/.dropbox-dist/dropboxd' to run Dropbox for the first time. It will automatically start on boot" ; fi
+if [ "$INTELLIJ" == y ] ; then echo "PS! Use the command '/opt/ideaIU*/bin/idea.sh' to run IntelliJ for the first time." ; fi
