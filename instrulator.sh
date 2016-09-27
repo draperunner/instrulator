@@ -61,9 +61,14 @@ apt-get update -qq
 # Install Node.js using NVM
 if [ "$NODE" == y ] ; then
   echo "Installing Node..."
-  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | bash
-  source ~/.profile
-  nvm install 4.2.1
+  apt-get install build-essential libssl-dev
+  curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.29.0/install.sh | sudo -u $CURR_USER bash
+  export NVM_DIR=/home/$CURR_USER/.nvm
+  source /home/$CURR_USER/.nvm/nvm.sh
+  source /home/$CURR_USER/.profile
+  source /home/$CURR_USER/.bashrc
+  nvm install node
+  nvm use node
   npm install -g express
   npm install -g nodemon
   npm install -g bower
