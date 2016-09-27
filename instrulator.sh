@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-ARCH="$(uname -m)"
-
 # Check if user is running as root (sudo)
 if [ "$(id -u)" != "0" ] ; then
   echo "Sorry, you need to run this script as root, else it will not do much good."
@@ -27,6 +25,8 @@ echo -n "Install IntelliJ 15 Ultimate Edition [y/N] ?" && read INTELLIJ && [ "$I
 echo -n "Install compiz config manager? [y/N] ?" && read COMPIZ && [ "$COMPIZ" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install QEMU machine emulator? [y/N] ?" && read QEMU && [ "$QEMU" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install Meteor.js? [y/N]" && read METEOR && [ "$METEOR" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install git? [y/N]" && read GIT && [ "$GIT" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Atom editor? [y/N]" && read ATOM && [ "$ATOM" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 
 if [ "$NUM_INSTALLS" -eq 0 ] ; then
   echo -e "\nNone of the programs will be installed. Why are you running this script?\n"
@@ -78,6 +78,13 @@ if [ "$DROPBOX" == y ] ; then
   rm dropboxd.desktop
 fi
 
+if [ "$ATOM" == y ] ; then
+  echo "Installing Atom..."
+  wget "https://atom.io/download/deb"
+  dkpg -i atom-amd64.deb
+  rm atom-amd64.deb
+fi
+
 if [ "$CHROME" == y ] ; then echo "Installing Chrome..." && apt-get install -qqy google-chrome-stable ; fi
 if [ "$SPOTIFY" == y ] ; then echo "Installing Spotify..." && apt-get install -qqy spotify-client ; fi
 if [ "$GIMP" == y ] ; then echo "Installing gimp..." && apt-get install -qqy gimp ; fi
@@ -99,6 +106,7 @@ fi
 
 if [ "$COMPIZ" == y ] ; then echo "Installing compiz..." && apt-get install -qqy compiz-config-manager ; fi
 if [ "$QEMU" == y ] ; then echo "Installing QEMU..." && apt-get install -qqy qemu-kvm qemu virt-manager virt-viewer libvirt-bin ; fi
+if [ "$GIT" == y ] ; then echo "Installing git..." && apt-get install -qqy git ; fi
 
 echo -e "...done!\n"
 if [ "$DROPBOX" == y ] ; then echo "PS! Use the command '~/.dropbox-dist/dropboxd' to run Dropbox for the first time. It will automatically start on boot" ; fi
