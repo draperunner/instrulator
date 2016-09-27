@@ -8,6 +8,8 @@ if [ "$(id -u)" != "0" ] ; then
   exit 1
 fi
 
+CURR_USER=$(who | awk '{print $1}')
+
 NUM_INSTALLS=0
 
 echo -n "Install Google Chrome? [y/N] " && read CHROME && [ "$CHROME" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
@@ -69,12 +71,11 @@ fi
 # Install Dropbox
 if [ "$DROPBOX" == y ] ; then
   echo "Installing Dropbox..."
-  wget "https://www.dropbox.com/download?plat=lnx.x86_64"
-  mv dropbox-lnx.x86_64* /home/$USER
-  tar xzf /home/$USER/dropbox-lnx.x86_64*
+  cd /home/$CURR_USER && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
   wget https://raw.githubusercontent.com/draperunner/instrulator/master/dropboxd.desktop
-  touch /home/$USER/.config/autostart/dropboxd.desktop
-  envsubst < dropboxd.desktop > /home/$USER/.config/autostart/dropboxd.desktop
+  mkdir -p /home/$CURR_USER/.config/autostart
+  touch /home/$CURR_USER/.config/autostart/dropboxd.desktop
+  envsubst < dropboxd.desktop > /home/$CURR_USER/.config/autostart/dropboxd.desktop
   rm dropboxd.desktop
 fi
 
