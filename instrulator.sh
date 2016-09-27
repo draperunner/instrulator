@@ -12,21 +12,21 @@ fi
 
 NUM_INSTALLS=0
 
-echo -n "Install Google Chrome? [y/n] " && read CHROME && [ "$CHROME" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install Spotify? [y/n] " && read SPOTIFY && [ "$SPOTIFY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install Node.js? [y/n] " && read NODE && [ "$NODE" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install gimp? [y/n] " && read GIMP && [ "$GIMP" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install Steam? [y/n] " && read STEAM && [ "$STEAM" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install Dropbox? [y/n] " && read DROPBOX && [ "$DROPBOX" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install Virtualbox? [y/n] " && read VIRTUALBOX && [ "$VIRTUALBOX" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install pip for Python? [y/n] " && read PIP && [ "$PIP" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-if [ "$PIP" == y ] ; then echo -n "Install numpy for Python? [y/n] " && read NUMPY && [ "$NUMPY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL)) ; fi
-if [ "$PIP" == y ] ; then echo -n "Install scipy for Python? [y/n] " && read SCIPY && [ "$SCIPY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL)) ; fi
-echo -n "Install irssi IRC client? [y/n] " && read IRSSI && [ "$IRSSI" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install IntelliJ 15 Ultimate Edition [y/n] ?" && read INTELLIJ && [ "$INTELLIJ" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install compiz config manager? [y/n] ?" && read COMPIZ && [ "$COMPIZ" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install QEMU machine emulator? [y/n] ?" && read QEMU && [ "$QEMU" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install Meteor.js? [y/n]" && read METEOR && [ "$METEOR" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Google Chrome? [y/N] " && read CHROME && [ "$CHROME" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Spotify? [y/N] " && read SPOTIFY && [ "$SPOTIFY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Node.js? [y/N] " && read NODE && [ "$NODE" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install gimp? [y/N] " && read GIMP && [ "$GIMP" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Steam? [y/N] " && read STEAM && [ "$STEAM" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Dropbox? [y/N] " && read DROPBOX && [ "$DROPBOX" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Virtualbox? [y/N] " && read VIRTUALBOX && [ "$VIRTUALBOX" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install pip for Python? [y/N] " && read PIP && [ "$PIP" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+if [ "$PIP" == y ] ; then echo -n "Install numpy for Python? [y/N] " && read NUMPY && [ "$NUMPY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL)) ; fi
+if [ "$PIP" == y ] ; then echo -n "Install scipy for Python? [y/N] " && read SCIPY && [ "$SCIPY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL)) ; fi
+echo -n "Install irssi IRC client? [y/N] " && read IRSSI && [ "$IRSSI" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install IntelliJ 15 Ultimate Edition [y/N] ?" && read INTELLIJ && [ "$INTELLIJ" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install compiz config manager? [y/N] ?" && read COMPIZ && [ "$COMPIZ" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install QEMU machine emulator? [y/N] ?" && read QEMU && [ "$QEMU" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Meteor.js? [y/N]" && read METEOR && [ "$METEOR" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 
 if [ "$NUM_INSTALLS" -eq 0 ] ; then
   echo -e "\nNone of the programs will be installed. Why are you running this script?\n"
