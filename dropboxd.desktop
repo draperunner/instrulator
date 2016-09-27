@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
-Exec=/home/$USER/.dropbox-dist/dropboxd
+Exec=/home/$(who | awk '{print $1}')/.dropbox-dist/dropboxd
 Hidden=false
 NoDisplay=false
 X-GNOME-Autostart-enabled=true

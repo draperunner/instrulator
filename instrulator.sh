@@ -79,8 +79,8 @@ if [ "$DROPBOX" == y ] ; then
   echo "Installing Dropbox..."
   cd /home/$CURR_USER && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
   wget https://raw.githubusercontent.com/draperunner/instrulator/master/dropboxd.desktop
-  mkdir -p /home/$CURR_USER/.config/autostart
-  touch /home/$CURR_USER/.config/autostart/dropboxd.desktop
+  sudo -u $CURR_USER mkdir -p /home/$CURR_USER/.config/autostart
+  sudo -u $CURR_USER touch /home/$CURR_USER/.config/autostart/dropboxd.desktop
   envsubst < dropboxd.desktop > /home/$CURR_USER/.config/autostart/dropboxd.desktop
   rm dropboxd.desktop
 fi
