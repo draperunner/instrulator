@@ -29,6 +29,7 @@ echo -n "Install QEMU machine emulator? [y/N] ?" && read QEMU && [ "$QEMU" != "y
 echo -n "Install Meteor.js? [y/N]" && read METEOR && [ "$METEOR" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install git? [y/N]" && read GIT && [ "$GIT" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install Atom editor? [y/N]" && read ATOM && [ "$ATOM" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install BOINC? [y/N]" && read BOINC && [ "$BOINC" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 
 if [ "$NUM_INSTALLS" -eq 0 ] ; then
   echo -e "\nNone of the programs will be installed. Why are you running this script?\n"
@@ -108,6 +109,7 @@ fi
 if [ "$COMPIZ" == y ] ; then echo "Installing compiz..." && apt-get install -qqy compiz-config-manager ; fi
 if [ "$QEMU" == y ] ; then echo "Installing QEMU..." && apt-get install -qqy qemu-kvm qemu virt-manager virt-viewer libvirt-bin ; fi
 if [ "$GIT" == y ] ; then echo "Installing git..." && apt-get install -qqy git ; fi
+if [ "$BOINC" == y ] ; then echo "Installing BOINC..." && apt-get install -qqy boinc-client boinc-manager ; fi
 
 echo -e "...done!\n"
 if [ "$DROPBOX" == y ] ; then echo "PS! Use the command '~/.dropbox-dist/dropboxd' to run Dropbox for the first time. It will automatically start on boot" ; fi
