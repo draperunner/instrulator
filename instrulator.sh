@@ -101,7 +101,7 @@ if [ "$PIP" == y ] ; then echo "Installing pip..." && apt-get install -qqy pytho
 if [ "$NUMPY" == y ] ; then echo "Installing numpy..." && pip install numpy && pip3 install numpy ; fi
 if [ "$SCIPY" == y ] ; then echo "Installing scipy..." && pip install scipy && pip3 install scipy ; fi
 if [ "$IRSSI" == y ] ; then echo "Installing irssi..." && apt-get install -qqy irssi ; fi
-if [ "$METEOR" == y ] ; then echo "Installing Meteor.js..." && curl https://install.meteor.com/ | sh ; fi
+if [ "$METEOR" == y ] ; then echo "Installing Meteor.js..." && curl https://install.meteor.com/ | sudo -u $CURR_USER sh ; fi
 
 if [ "$INTELLIJ" == y ] ; then
   echo "Installing IntelliJ 15..."
