@@ -23,13 +23,13 @@ echo -n "Install pip for Python? [y/N] " && read PIP && [ "$PIP" != "y" ] ; BOOL
 if [ "$PIP" == y ] ; then echo -n "Install numpy for Python? [y/N] " && read NUMPY && [ "$NUMPY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL)) ; fi
 if [ "$PIP" == y ] ; then echo -n "Install scipy for Python? [y/N] " && read SCIPY && [ "$SCIPY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL)) ; fi
 echo -n "Install irssi IRC client? [y/N] " && read IRSSI && [ "$IRSSI" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install IntelliJ 15 Ultimate Edition [y/N] ?" && read INTELLIJ && [ "$INTELLIJ" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install compiz config manager? [y/N] ?" && read COMPIZ && [ "$COMPIZ" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install QEMU machine emulator? [y/N] ?" && read QEMU && [ "$QEMU" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install Meteor.js? [y/N]" && read METEOR && [ "$METEOR" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install git? [y/N]" && read GIT && [ "$GIT" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install Atom editor? [y/N]" && read ATOM && [ "$ATOM" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
-echo -n "Install BOINC? [y/N]" && read BOINC && [ "$BOINC" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install IntelliJ 15 Ultimate Edition? [y/N] " && read INTELLIJ && [ "$INTELLIJ" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install compiz config manager? [y/N] " && read COMPIZ && [ "$COMPIZ" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install QEMU machine emulator? [y/N] " && read QEMU && [ "$QEMU" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Meteor.js? [y/N] " && read METEOR && [ "$METEOR" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install git? [y/N] " && read GIT && [ "$GIT" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Atom editor? [y/N] " && read ATOM && [ "$ATOM" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install BOINC? [y/N] " && read BOINC && [ "$BOINC" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 
 if [ "$NUM_INSTALLS" -eq 0 ] ; then
   echo -e "\nNone of the programs will be installed. Why are you running this script?\n"
