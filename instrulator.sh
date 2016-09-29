@@ -15,6 +15,7 @@ NUM_INSTALLS=0
 echo -n "Install Google Chrome? [y/N] " && read CHROME && [ "$CHROME" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install Spotify? [y/N] " && read SPOTIFY && [ "$SPOTIFY" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install Node.js? [y/N] " && read NODE && [ "$NODE" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install MongoDB? [y/N] " && read MONGODB && [ "$MONGODB" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install gimp? [y/N] " && read GIMP && [ "$GIMP" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install Steam? [y/N] " && read STEAM && [ "$STEAM" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install Dropbox? [y/N] " && read DROPBOX && [ "$DROPBOX" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
@@ -53,6 +54,11 @@ fi
 if [ "$CHROME" == y ] ; then
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
   sh -c 'echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+fi
+
+if [ "$MONGODB" == y ] ; then
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
+  echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list
 fi
 
 echo "Updating repository list..."
@@ -102,6 +108,24 @@ if [ "$NUMPY" == y ] ; then echo "Installing numpy..." && pip install numpy && p
 if [ "$SCIPY" == y ] ; then echo "Installing scipy..." && pip install scipy && pip3 install scipy ; fi
 if [ "$IRSSI" == y ] ; then echo "Installing irssi..." && apt-get install -qqy irssi ; fi
 if [ "$METEOR" == y ] ; then echo "Installing Meteor.js..." && curl https://install.meteor.com/ | sudo -u $CURR_USER sh ; fi
+
+if [ "$MONGODB" == y ] ; then
+  echo "Installing MongoDB..."
+  apt-get install -y mongodb-org
+  touch /etc/systemd/system/mongodb.service
+  echo "[Unit]" >> /etc/systemd/system/mongodb.service
+  echo "Description=High-performance, schema-free document-oriented database" >> /etc/systemd/system/mongodb.service
+  echo "After=network.target" >> /etc/systemd/system/mongodb.service
+  echo "" >> /etc/systemd/system/mongodb.service
+  echo "[Service]" >> /etc/systemd/system/mongodb.service
+  echo "User=mongodb" >> /etc/systemd/system/mongodb.service
+  echo "ExecStart=/usr/bin/mongod --quiet --config /etc/mongod.conf" >> /etc/systemd/system/mongodb.service
+  echo "" >> /etc/systemd/system/mongodb.service
+  echo "[Install]" >> /etc/systemd/system/mongodb.service
+  echo "WantedBy=multi-user.target" >> /etc/systemd/system/mongodb.service
+  systemctl start mongodb
+  systemctl enable mongodb
+fi
 
 if [ "$INTELLIJ" == y ] ; then
   echo "Installing IntelliJ 15..."
