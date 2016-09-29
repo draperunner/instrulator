@@ -4,7 +4,7 @@
 if [ "$(id -u)" != "0" ] ; then
   echo "Sorry, you need to run this script as root, else it will not do much good."
   echo -e "Try the following command:\n"
-  echo -e "sudo bash instrulator.sh\n"
+  echo -e "sudo ./instrulator.sh\n"
   exit 1
 fi
 
