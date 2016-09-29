@@ -4,6 +4,8 @@ Installer script for fresh or not-so-fresh Ubuntu installs.
 Use it to install all (or at least some) of your favorite programs automatically while leaning
 back in your comfortable chair, with an ice cold beer in your hand.
 
+Somewhat tested on Ubuntu 16.04 Xenial Xerus.
+
 ## How-to
 
 Download the script:  
