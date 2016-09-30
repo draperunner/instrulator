@@ -31,6 +31,7 @@ echo -n "Install Meteor.js? [y/N] " && read METEOR && [ "$METEOR" != "y" ] ; BOO
 echo -n "Install git? [y/N] " && read GIT && [ "$GIT" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install Atom editor? [y/N] " && read ATOM && [ "$ATOM" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 echo -n "Install BOINC? [y/N] " && read BOINC && [ "$BOINC" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
+echo -n "Install Java 8 JDK? [y/N] " && read JAVA8 && [ "$JAVA8" != "y" ] ; BOOL=$? && NUM_INSTALLS=$((NUM_INSTALLS+BOOL))
 
 if [ "$NUM_INSTALLS" -eq 0 ] ; then
   echo -e "\nNone of the programs will be installed. Why are you running this script?\n"
@@ -59,6 +60,10 @@ fi
 if [ "$MONGODB" == y ] ; then
   apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv EA312927
   echo "deb http://repo.mongodb.org/apt/ubuntu xenial/mongodb-org/3.2 multiverse" | tee /etc/apt/sources.list.d/mongodb-org-3.2.list
+fi
+
+if [ "$JAVA8" == y ] ; then
+  add-apt-repository ppa:webupd8team/java
 fi
 
 echo "Updating repository list..."
@@ -125,6 +130,13 @@ if [ "$MONGODB" == y ] ; then
   echo "WantedBy=multi-user.target" >> /etc/systemd/system/mongodb.service
   systemctl start mongodb
   systemctl enable mongodb
+fi
+
+if [ "$JAVA8" == y ] ; then
+  echo "Installing Java 8 JDK..."
+  apt-get install oracle-java8-installer
+  echo 'JAVA_HOME="/usr/lib/jvm/java-8-oracle"' >> /etc/environment
+  . /etc/environment
 fi
 
 if [ "$INTELLIJ" == y ] ; then
