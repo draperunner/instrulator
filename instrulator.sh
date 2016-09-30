@@ -80,9 +80,7 @@ if [ "$NODE" == y ] ; then
   source /home/$CURR_USER/.bashrc
   nvm install node
   nvm use node
-  npm install -g express
-  npm install -g nodemon
-  npm install -g bower
+  nvm alias default node
 fi
 
 # Install Dropbox
