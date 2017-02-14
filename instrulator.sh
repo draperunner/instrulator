@@ -43,8 +43,8 @@ echo
 
 echo "Adding repositories and keys"
 if [ "$SPOTIFY" == y ] ; then
-  apt-add-repository -y "deb http://repository.spotify.com stable non-free"
-  apt-key adv --keyserver keyserver.ubuntu.com --recv-keys D2C19886
+  apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys BBEBDCB318AD50EC6865090613B00F1FD2C19886
+  echo deb http://repository.spotify.com stable non-free | sudo tee /etc/apt/sources.list.d/spotify.list
 fi
 
 if [ "$CHROME" == y ] ; then
